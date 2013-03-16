@@ -106,6 +106,7 @@ struct append_range<List<Es...>,Max,Max>
 {
     using type = List<Es...,_int<Max>>;
 };
+// --- end append_range ------------------------------------------------------
 
 // append element n times
 // append_n< list<es...>, N, Element > = list<es...,Element,...,Element>
@@ -127,7 +128,10 @@ struct append_n<List<Es...>,0,Element>
 {
     using type = List<Es...>;
 };
+// --- end append_n ----------------------------------------------------------
 
+
+// --- element wise add, subtract, multiply, divide --------------------------
 // little helper typedef
 template <typename A, typename B>
 using sum_type = decltype(A() + B());
@@ -141,7 +145,7 @@ using product_type = decltype(A() * B());
 template <typename A, typename B>
 using quotient_type = decltype(A() / B());
 
-// element wise add list types
+// --- add_list_elements -----------------------------------------------------
 template <typename List1, typename List2>
 struct add_list_elements {};
 
@@ -151,7 +155,9 @@ struct add_list_elements< List<Elements1...>,List<Elements2...> >
 {
     using type = List< sum_type<Elements1,Elements2>... >;
 };
+// --- end add_list_elements -------------------------------------------------
 
+// --- subtract_list_elements ------------------------------------------------
 template <typename List1, typename List2>
 struct subtract_list_elements {};
 
@@ -161,8 +167,10 @@ struct subtract_list_elements< List<Elements1...>,List<Elements2...> >
 {
     using type = List< difference_type<Elements1,Elements2>... >;
 };
+// --- end subtract_list_elements --------------------------------------------
 
 
+// --- multiply_list_elements ------------------------------------------------
 template <typename List1, typename List2>
 struct multiply_list_elements {};
 
@@ -172,8 +180,10 @@ struct multiply_list_elements< List<Elements1...>,List<Elements2...> >
 {
     using type = List< product_type<Elements1,Elements2>... >;
 };
+// --- end multiply_list_elements --------------------------------------------
 
 
+// --- divide_list_elements --------------------------------------------------
 template <typename List1, typename List2>
 struct divide_list_elements {};
 
@@ -183,6 +193,9 @@ struct divide_list_elements< List<Elements1...>,List<Elements2...> >
 {
     using type = List< quotient_type<Elements1,Elements2>... >;
 };
+// --- end divide_list_elements ----------------------------------------------
+
+
 
 // ---------------------------------------------------------------------------
         } // end namespace lego::meta::list

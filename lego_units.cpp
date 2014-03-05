@@ -17,7 +17,8 @@ int main()
     quantity<_force>  F = 2.0_N; // Define a quantity of force.
     quantity<_length> dx = 2.0_m;       // and a distance,
     quantity<_energy> E = work(F,dx);    // and calculate the work done.
-    const auto acc = 9.0_ms2;
+    const auto vel = 1.0 * _mps;
+    const auto acc = 9.0 * _mps2;
 
     std::cout << "F  = " << F << std::endl
               << "dx = " << dx << std::endl

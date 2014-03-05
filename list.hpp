@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef __META_LIST_HPP__
 #define __META_LIST_HPP__
 
@@ -6,10 +8,7 @@
 
 
 // ---------------------------------------------------------------------------
-namespace lego
-{   namespace meta
-    {   namespace list
-        {
+namespace lego { namespace meta { namespace list {
 // ---------------------------------------------------------------------------
 
 // --- list class ------------------------------------------------------------
@@ -60,7 +59,7 @@ void print( std::ostream &os, _int<I> i )
 template<typename T, typename... Ts>
 void print( std::ostream &os, T t, Ts... ts )
 {
-    
+
     print(os,t);
     if (sizeof...(Ts) > 0 )
     {
@@ -78,7 +77,7 @@ void print( std::ostream &os, List<Elements...> l )
 template < template <typename...> class List, typename... Elements >
 std::ostream &operator<<( std::ostream &os, List<Elements...> )
 {
-    os << "<"; 
+    os << "<";
     print( os, Elements()... );
     os << ">";
     return os;
@@ -116,7 +115,7 @@ template <typename List, int N, typename Element>
 struct append_n
 {};
 
-template <template <typename...> class List, int N, typename Element, 
+template <template <typename...> class List, int N, typename Element,
           typename... Es>
 struct append_n<List<Es...>,N,Element>
 {
@@ -149,7 +148,7 @@ using quotient_type = decltype(A() / B());
 template <typename List1, typename List2>
 struct add_list_elements {};
 
-template <template <typename...> class List, 
+template <template <typename...> class List,
           typename... Elements1, typename... Elements2>
 struct add_list_elements< List<Elements1...>,List<Elements2...> >
 {
@@ -161,7 +160,7 @@ struct add_list_elements< List<Elements1...>,List<Elements2...> >
 template <typename List1, typename List2>
 struct subtract_list_elements {};
 
-template <template <typename...> class List, 
+template <template <typename...> class List,
           typename... Elements1, typename... Elements2>
 struct subtract_list_elements< List<Elements1...>,List<Elements2...> >
 {
@@ -174,7 +173,7 @@ struct subtract_list_elements< List<Elements1...>,List<Elements2...> >
 template <typename List1, typename List2>
 struct multiply_list_elements {};
 
-template <template <typename...> class List, 
+template <template <typename...> class List,
           typename... Elements1, typename... Elements2>
 struct multiply_list_elements< List<Elements1...>,List<Elements2...> >
 {
@@ -187,7 +186,7 @@ struct multiply_list_elements< List<Elements1...>,List<Elements2...> >
 template <typename List1, typename List2>
 struct divide_list_elements {};
 
-template <template <typename...> class List, 
+template <template <typename...> class List,
           typename... Elements1, typename... Elements2>
 struct divide_list_elements< List<Elements1...>,List<Elements2...> >
 {

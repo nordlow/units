@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef __UNITS_EV_K_NM_FS_E0_HPP__
 #define __UNITS_EV_K_NM_FS_E0_HPP__
 

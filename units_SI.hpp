@@ -50,8 +50,20 @@ UNITS_MAKE_DERIVED_DIMENSION(_power,_W,_J/_s); // Watt
 
 UNITS_MAKE_DERIVED_DIMENSION(_frequency,_Hz,1/_s); // Hertz
 
-UNITS_MAKE_DERIVED_DIMENSION(_charge,_C,_s*_A); // Coulomb
-
+UNITS_MAKE_DERIVED_DIMENSION(_charge,_C,_s*_A); // Electric Charge: Coulomb
+UNITS_MAKE_DERIVED_DIMENSION(_capacitance,_F,_C/_V); // Electric Capacitance: Farad
+UNITS_MAKE_DERIVED_DIMENSION(_resistance,_Ohm,_V/_A); // Electric Resistance
+UNITS_MAKE_DERIVED_DIMENSION(_conductance,_S,_A/_V); // Siemens
+UNITS_MAKE_DERIVED_DIMENSION(_weber,_Wb,_V*_S); // Weber
+UNITS_MAKE_DERIVED_DIMENSION(_tesla,_T,_Wb/_m2); // Magnetic Flux: Tesla
+UNITS_MAKE_DERIVED_DIMENSION(_inductance,_H,_Wb/_A); // Henry
+UNITS_MAKE_DERIVED_DIMENSION(_deegree_Celsius,_Celsius,1*_K); // Temperature relative to 273.15 K. TODO: Offset from 273.15
+UNITS_MAKE_DERIVED_DIMENSION(_lumen,_lm,_cd*_sr);
+UNITS_MAKE_DERIVED_DIMENSION(_illuminance,_lx,_lm/_m2);
+UNITS_MAKE_DERIVED_DIMENSION(_becquerel,_Bq,1/_s); // Decays per second
+UNITS_MAKE_DERIVED_DIMENSION(_gray,_Gy,_J/_kg); // Absorbed does (of ionizing radiation)
+UNITS_MAKE_DERIVED_DIMENSION(_sievert,_Sv,_J/_kg); // Absorbed does (of ionizing radiation)
+UNITS_MAKE_DERIVED_DIMENSION(_katal,_kat,_mol/_s); // Catalytic activity
 
 } // end namespace lego::units
 } // end namespace lego

@@ -1,13 +1,13 @@
+#pragma once
+
 #ifndef __RATIONALS_HPP__
 #define __RATIONALS_HPP__
 
 #include <iostream>
 
 // ---------------------------------------------------------------------------
-namespace lego
-{   namespace meta
-    {   namespace rationals
-        {
+namespace lego { namespace meta { namespace rationals {
+
 // ---------------------------------------------------------------------------
 
 // denominator needs to be positive or bad things might happen!
@@ -30,7 +30,7 @@ constexpr int abs( const int a )
     return a < 0 ? (-a) : (a);
 }
 
-// gives the greatest common devisor of a and b. 
+// gives the greatest common devisor of a and b.
 // note: gcd(0,b) = gcd(a,0) = 1
 constexpr int gcd( const int a, const int b )
 {
@@ -38,7 +38,7 @@ constexpr int gcd( const int a, const int b )
     // technically base cases with zero input should return 1, but i want
     // rationals 0/anything to be reduced to 0/1
     return a == 0 ?  b
-            : b == 0 ? a 
+            : b == 0 ? a
             : a == b ? a : ( a > b ? gcd(a-b,b) : gcd(a, b-a) );
 }
 
@@ -67,11 +67,11 @@ struct reduce_rational< R<N,D> >
 template< typename R1, typename R2 >
 struct add_rationals {};
 
-template <template <int, int> class R, 
+template <template <int, int> class R,
           int N1, int D1, int N2, int D2>
 struct add_rationals< R<N1,D1>, R<N2,D2> >
 {
-    using type = typename reduce_rational< R<N1*D2 + N2*D1, D1*D2> >::type; 
+    using type = typename reduce_rational< R<N1*D2 + N2*D1, D1*D2> >::type;
 };
 // --- end add_rationals -----------------------------------------------------
 
@@ -79,11 +79,11 @@ struct add_rationals< R<N1,D1>, R<N2,D2> >
 template< typename R1, typename R2 >
 struct subtract_rationals {};
 
-template <template <int, int> class R, 
+template <template <int, int> class R,
           int N1, int D1, int N2, int D2>
 struct subtract_rationals< R<N1,D1>, R<N2,D2> >
 {
-    using type = typename add_rationals< R<N1,D1>, R<-N2,D2> >::type; 
+    using type = typename add_rationals< R<N1,D1>, R<-N2,D2> >::type;
 };
 // --- subtract_rationals ----------------------------------------------------
 
@@ -91,7 +91,7 @@ struct subtract_rationals< R<N1,D1>, R<N2,D2> >
 template< typename R1, typename R2 >
 struct multiply_rationals {};
 
-template <template <int, int> class R, 
+template <template <int, int> class R,
           int N1, int D1, int N2, int D2>
 struct multiply_rationals< R<N1,D1>, R<N2,D2> >
 {
@@ -103,38 +103,38 @@ struct multiply_rationals< R<N1,D1>, R<N2,D2> >
 template< typename R1, typename R2 >
 struct divide_rationals {};
 
-template <template <int, int> class R, 
+template <template <int, int> class R,
           int N1, int D1, int N2, int D2>
 struct divide_rationals< R<N1,D1>, R<N2,D2> >
 {
-    using type = typename multiply_rationals< R<N1,D1>, R<D2,N2> >::type; 
+    using type = typename multiply_rationals< R<N1,D1>, R<D2,N2> >::type;
 };
 // --- end divide_rationals --------------------------------------------------
 
 // --- operators +-*/ --------------------------------------------------------
 template <typename R1, typename R2>
-constexpr auto operator+( R1, R2 ) 
+constexpr auto operator+( R1, R2 )
     ->  typename add_rationals< R1, R2 >::type
 {
     return typename add_rationals< R1, R2 >::type();
 }
 
 template <typename R1, typename R2>
-constexpr auto operator-( R1, R2 ) 
+constexpr auto operator-( R1, R2 )
     ->  typename subtract_rationals< R1, R2 >::type
 {
     return typename subtract_rationals< R1, R2 >::type();
 }
 
 template <typename R1, typename R2>
-constexpr auto operator*( R1, R2 ) 
+constexpr auto operator*( R1, R2 )
     ->  typename multiply_rationals< R1, R2 >::type
 {
     return typename multiply_rationals< R1, R2 >::type();
 }
 
 template <typename R1, typename R2>
-constexpr auto operator/( R1, R2 ) 
+constexpr auto operator/( R1, R2 )
     ->  typename divide_rationals< R1, R2 >::type
 {
     return typename divide_rationals< R1, R2 >::type();

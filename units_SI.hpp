@@ -5,6 +5,8 @@
 
 #include "units.hpp"
 
+/* See also https://en.wikipedia.org/wiki/International_System_of_Units
+ */
 namespace lego { namespace units {
 
 // define a base system

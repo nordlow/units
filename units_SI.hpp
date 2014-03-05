@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef __UNITS_EV_K_NM_FS_E0_HPP__
-#define __UNITS_EV_K_NM_FS_E0_HPP__
+#ifndef __UNITS_SI_HPP__
+#define __UNITS_SI_HPP__
 
 #include "units.hpp"
 
@@ -30,4 +30,4 @@ UNITS_MAKE_DERIVED_DIMENSION(_resistance,_ohms,_V/_A);
 } // end namespace lego::units
 } // end namespace lego
 
-#endif // ifndef __UNITS_EV_K_NM_FS_E0_HPP__
+#endif // ifndef __UNITS_SI_HPP__

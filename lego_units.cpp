@@ -23,10 +23,14 @@ int main()
     const auto vel_ = 1.0_mps;
     const auto velx_ = 1.0_m / 1.0_s;
     const auto acc_ = 9.0_mps2;
+
     const auto area_ = 1.0_m2;
     const auto len_ = sqrt(area_);
     const auto area2_ = sqr(len_);
+
     const auto volume_ = 1.0_m3;
+    const auto vlen_ = cbrt(volume_);
+
     const auto pressure_ = 1.0_N;
     const auto power_ = 1.0_W;
 

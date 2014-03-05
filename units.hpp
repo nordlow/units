@@ -227,12 +227,28 @@ auto sqrt( quantity<D,T> x )
             >::type,
             T
         >
-
 {
     // list with same length as D and all entries 1/2
     using halfs = typename append_n< list<>, size( D() ), rational<1,2> >::type;
     using return_dim = typename multiply_list_elements< D, halfs >::type;
     return quantity< return_dim, T >( std::sqrt(x.value()) );
+}
+
+// cube root function gives the unit a factor 1/2
+template <typename T, typename D>
+auto cbrt( quantity<D,T> x )
+    -> quantity<
+    typename multiply_list_elements<
+    D,
+    typename append_n< list<>, size( D() ), rational<1,3> >::type
+                                                            >::type,
+    T
+    >
+{
+    // list with same length as D and all entries 1/3
+    using halfs = typename append_n< list<>, size( D() ), rational<1,3> >::type;
+    using return_dim = typename multiply_list_elements< D, halfs >::type;
+    return quantity< return_dim, T >( std::cbrt(x.value()) );
 }
 
 // Square function gives the unit a factor

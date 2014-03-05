@@ -1,8 +1,10 @@
 #include <iostream>
 #include <complex>
+#include <cmath>
 
 #include "units_SI.hpp"
 
+using namespace std;
 using namespace lego::units;
 
 quantity<_energy>
@@ -17,8 +19,17 @@ int main()
     quantity<_force>  F = 2.0_N; // Define a quantity of force.
     quantity<_length> dx = 2.0_m;       // and a distance,
     quantity<_energy> E = work(F,dx);    // and calculate the work done.
-    const auto vel = 1.0 * _mps;
-    const auto acc = 9.0 * _mps2;
+
+    const auto vel_ = 1.0_mps;
+    const auto acc_ = 9.0_mps2;
+    const auto area_ = 1.0_m2;
+    const auto volume_ = 1.0_m3;
+    const auto pressure_ = 1.0_N;
+    const auto power_ = 1.0_W;
+
+    const auto angle_ = 1.0_rad;
+    const auto solide_angle_ = 1.0_sr;
+    const auto y = std::sin(angle_);
 
     std::cout << "F  = " << F << std::endl
               << "dx = " << dx << std::endl

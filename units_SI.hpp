@@ -21,12 +21,24 @@ UNITS_MAKE_BASE_DIMENSION(_luminous_intensity,_cd,7);
 
 UNITS_MAKE_SCALAR_DIMENSION(_scalar);
 
+UNITS_MAKE_DERIVED_DIMENSION(_area,_m2,_m*_m);
+UNITS_MAKE_DERIVED_DIMENSION(_volume,_m3,_m*_m*_m);
+
+UNITS_MAKE_DERIVED_DIMENSION(_angle,_rad,_m/_m);
+UNITS_MAKE_DERIVED_DIMENSION(_solid_angle,_sr,_m2*_m2);
+
+UNITS_MAKE_DERIVED_DIMENSION(_density,_dens,_kg/_m3);
+
 UNITS_MAKE_DERIVED_DIMENSION(_velocity,_mps,_m/_s);
 UNITS_MAKE_DERIVED_DIMENSION(_acceleration,_mps2,_m/(_s*_s));
 UNITS_MAKE_DERIVED_DIMENSION(_force,_N,_kg*_mps2);
 UNITS_MAKE_DERIVED_DIMENSION(_energy,_J,_N*_m);
 UNITS_MAKE_DERIVED_DIMENSION(_electric_potential,_V,_kg*(_m*_m)/(_s*_s*_s*_A));
 UNITS_MAKE_DERIVED_DIMENSION(_resistance,_ohms,_V/_A);
+
+UNITS_MAKE_DERIVED_DIMENSION(_pressure,_Pa,_N/_m2);
+
+UNITS_MAKE_DERIVED_DIMENSION(_power,_W,_J/_s);
 
 } // end namespace lego::units
 } // end namespace lego

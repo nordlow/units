@@ -1,12 +1,12 @@
 # a very simple makefile to compile the examples of lego::units
 
 CXX=g++
-COMPILE=$(CXX) -std=c++11 -g -g3
+COMPILE=$(CXX) -std=c++0x -g -g3
 
-all: boost_units.out lego_units.out test_rationals.out test_units.out
+all: lego_units.out boost_units.out test_rationals.out test_units.out
 
 clean:
 	rm -rf *.out
 
-%.out: %.cpp
+%.out: %.cpp Makefile
 	$(COMPILE) -o $@ $<

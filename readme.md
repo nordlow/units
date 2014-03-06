@@ -54,6 +54,7 @@ I've also added support in the Makefile for detection and use of C++1y Return Ty
 
     g++ -std=gnu++1y -I<path/to/units.hpp> <cpp-file>
 
+However, it currently doesn't compile on Clang. Shouldn't be to hard to fix.
 
 Description of the library's files
 ----------------------------------

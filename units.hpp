@@ -42,10 +42,10 @@ struct get_dimension< Q<D,T> >
 // requires UNITS_BASE_DIMENSIONS to be set to the number of dimensions
 #define UNITS_MAKE_BASE_DIMENSION(name,unit,id) \
     using name = make_base_dimension< UNITS_BASE_DIMENSIONS, id >; \
-    constexpr quantity<name> operator"" unit( long double value ) \
-    { return quantity<name>(value); }; \
+    constexpr quantity<name> operator"" unit( long double value )       \
+    { return quantity<name>(value); };                                  \
     const quantity<name> unit(1.0);
-// end UNITS_MAKE_BASE_DIMENSION
+
 // need to be called after UNITS_BASE_DIMENSIONS has been defined
 #define UNITS_MAKE_SCALAR_DIMENSION(name) \
     using name = make_scalar_dimension< UNITS_BASE_DIMENSIONS >; \
@@ -60,15 +60,12 @@ struct get_dimension< Q<D,T> >
     private: \
         T _value;\
     }; \
-// end UNITS_MAKE_SCALAR_DIMENSION
 
 #define UNITS_MAKE_DERIVED_DIMENSION(name,unit,base_units) \
     using name = typename get_dimension< decltype(base_units) >::type; \
     constexpr quantity<name> operator"" unit( const long double value ) \
     { return quantity<name>(value); } \
     const quantity<name> unit( 1.0 );
-// end UNITS_MAKE_DERIVED_DIMENSION
-
 
 // the main class for a thing with a unit
 // [WARNING!!!] use the macros as is will not nessesarily compile with gcc,

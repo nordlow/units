@@ -7,6 +7,7 @@ extern "C" { extern char *gets(char *__s) { return 0; }; }
 #include <iostream>
 #include <complex>
 #include <cmath>
+#include <cassert>
 
 #include "units_SI.hpp"
 
@@ -57,16 +58,22 @@ int main()
     const auto power_ = 1.0_W;
     cout << power_ << endl;
 
-    const auto angle_ = 1.0_rad;
+    const auto angle_ = 1.0_rad + 1.0_rad;
     cout << angle_ << endl;
+    assert(angle_ == 2);
 
-    const auto solid_angle_ = 1.0_sr;
-    cout << solid_angle_ << endl;
+    const auto angle_deg_ = 360.0_deg;
+    assert(angle_deg_ == 360.0*_deg);
+    cout << angle_deg_ << endl;
+
+    /* TODO: Activate */
+    /* const auto solid_angle_ = 1.0_sr; */
+    /* cout << solid_angle_ << endl; */
 
     /* Trigonometry */
-    cout << std::sin(angle_) << endl;
-    cout << std::cos(angle_) << endl;
-    cout << std::tan(angle_) << endl;
+    cout << sin(angle_) << endl;
+    cout << cos(angle_) << endl;
+    cout << tan(angle_) << endl;
 
     /* const auto xxx = area_ + len_; */
 

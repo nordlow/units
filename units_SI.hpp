@@ -63,15 +63,28 @@ template<> inline std::string name_string(const quantity<volume>&) { return "Vol
 template<> inline std::string unit_string(const quantity<volume>&) { return "cubicmeter"; }
 template<> inline std::string symbol_string(const quantity<volume>&){ return "m^3"; }
 
-UNITS_MAKE_DERIVED_DIMENSION(angle,_rad,_m/_m);
+UNITS_MAKE_DERIVED_DIMENSION(angle_rad,_rad,_m/_m);
 // TODO: Delay reduction until use
-template<> inline std::string name_string(const quantity<angle>&) { return "Angle"; }
-template<> inline std::string unit_string(const quantity<angle>&) { return "Radian"; }
-template<> inline std::string symbol_string(const quantity<angle>&){ return "rad"; }
-UNITS_MAKE_DERIVED_DIMENSION(solid_angle,_sr,_m2*_m2);
-template<> inline std::string name_string(const quantity<solid_angle>&) { return "Solid Angle"; }
-template<> inline std::string unit_string(const quantity<solid_angle>&) { return "Sterdian"; }
-template<> inline std::string symbol_string(const quantity<solid_angle>&){ return "st"; }
+template<> inline std::string name_string(const quantity<angle_rad>&) { return "Angle"; }
+template<> inline std::string unit_string(const quantity<angle_rad>&) { return "Radian"; }
+template<> inline std::string symbol_string(const quantity<angle_rad>&){ return "rad"; }
+
+/*! Degrees to Radians Conversion Factor. */
+#define M_DEG2RAD (0.0174532925199433)
+/*! Radians to Degrees Conversion Factor. */
+#define M_RAD2DEG (57.2957795130823)
+
+// Degrees need special handling
+constexpr quantity<angle_rad> operator"" _deg( const long double value ) {
+    return quantity<angle_rad>(value*M_DEG2RAD);
+}
+const quantity<angle_rad> _deg(M_DEG2RAD);
+
+// TODO: Need special type and Delay reduction until use
+/* UNITS_MAKE_DERIVED_DIMENSION(solid_angle,_sr,_m2/_m2); */
+/* template<> inline std::string name_string(const quantity<solid_angle>&) { return "Solid Angle"; } */
+/* template<> inline std::string unit_string(const quantity<solid_angle>&) { return "Sterdian"; } */
+/* template<> inline std::string symbol_string(const quantity<solid_angle>&){ return "st"; } */
 
 UNITS_MAKE_DERIVED_DIMENSION(density,_dens,_kg/_m3);
 template<> inline std::string name_string(const quantity<density>&) { return "Density"; }
@@ -156,15 +169,17 @@ inline std::string name_string(const quantity<temperature_Celsius>&) { return "T
 inline std::string unit_string(const quantity<temperature_Celsius>&) { return "Celsius"; }
 inline std::string symbol_string(const quantity<temperature_Celsius>&){ return "C"; }
 
-UNITS_MAKE_DERIVED_DIMENSION(lumen,_lm,_cd*_sr);
-inline std::string name_string(const quantity<lumen>&) { return "Lumen"; }
-inline std::string unit_string(const quantity<lumen>&) { return "Lumen"; }
-inline std::string symbol_string(const quantity<lumen>&){ return "T"; }
+/* TODO: Activate when _sr type is is fixed. */
+/* UNITS_MAKE_DERIVED_DIMENSION(lumen,_lm,_cd*_sr); */
+/* inline std::string name_string(const quantity<lumen>&) { return "Lumen"; } */
+/* inline std::string unit_string(const quantity<lumen>&) { return "Lumen"; } */
+/* inline std::string symbol_string(const quantity<lumen>&){ return "T"; } */
 
-UNITS_MAKE_DERIVED_DIMENSION(illuminance,_lx,_lm/_m2);
-inline std::string name_string(const quantity<illuminance>&) { return "Illuminance"; }
-inline std::string unit_string(const quantity<illuminance>&) { return "Lux"; }
-inline std::string symbol_string(const quantity<illuminance>&){ return "lx"; }
+/* TODO: Activate when _lm type is is fixed. */
+/* UNITS_MAKE_DERIVED_DIMENSION(illuminance,_lx,_lm/_m2); */
+/* inline std::string name_string(const quantity<illuminance>&) { return "Illuminance"; } */
+/* inline std::string unit_string(const quantity<illuminance>&) { return "Lux"; } */
+/* inline std::string symbol_string(const quantity<illuminance>&){ return "lx"; } */
 
 UNITS_MAKE_DERIVED_DIMENSION(becquerel,_Bq,1/_s);
 // TODO: This collides with Herz. Need explicit extra class for this

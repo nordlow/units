@@ -5,25 +5,24 @@
 int main ()
 {
     using namespace std;
-    using namespace lego::meta::rationals;
-    using namespace lego::meta::list;
+    using namespace lego;
     // using namespace lego::units;
 
     // using t1 = append_n< append_n< list<>, 3, rational<2,1> >::type, 2, rational< 1,4 > >::type;
     // using t2 = append_n< append_n< list<>, 3, rational<1,2> >::type, 2, rational< 2,3 > >::type;
     using t1 = rational<2,1>;
     using t2 = rational<1,4>;
-    cout << t1() << " + " << t2() 
-         <<  " = " << add_rationals< t1, t2 >::type() 
+    cout << t1() << " + " << t2()
+         <<  " = " << add_rationals< t1, t2 >::type()
          << "(" << (t1()+t2()) << ")" << endl;
-    cout << t1() << " - " << t2() 
+    cout << t1() << " - " << t2()
          <<  " = " << subtract_rationals< t1, t2 >::type()
          << "(" << (t1()-t2()) << ")" << endl;
-    cout << t1() << " * " << t2() 
+    cout << t1() << " * " << t2()
          <<  " = " << multiply_rationals< t1, t2 >::type()
          << "(" << (t1()*t2()) << ")" << endl;
-    cout << t1() << " / " << t2() 
-         <<  " = " << divide_rationals< t1, t2 >::type() 
+    cout << t1() << " / " << t2()
+         <<  " = " << divide_rationals< t1, t2 >::type()
          << "(" << (t1()/t2()) << ")" << endl;
 
     cout << "-------------------------" << endl;

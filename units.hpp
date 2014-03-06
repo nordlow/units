@@ -12,8 +12,7 @@
 namespace lego { namespace units {
 // ---------------------------------------------------------------------------
 
-using namespace lego::meta::list;
-using namespace lego::meta::rationals;
+using namespace lego;
 
 // generate dimension lists
 template <int BaseDims, int N>

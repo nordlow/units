@@ -7,7 +7,7 @@
 #include "cc_features.h"
 
 // ---------------------------------------------------------------------------
-namespace lego { namespace meta { namespace rationals {
+namespace lego {
 
 // ---------------------------------------------------------------------------
 
@@ -165,8 +165,6 @@ std::ostream &operator<<( std::ostream &out, rational<N,D> )
 }
 
 // ---------------------------------------------------------------------------
-        } // end namespace lego::meta::rationals
-    } // end namespace lego::meta
 } // end namespace lego
 // ---------------------------------------------------------------------------
 

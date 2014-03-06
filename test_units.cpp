@@ -15,17 +15,15 @@ namespace units = lego::units;
 template < typename D, typename T >
 void print_qty_type( quantity< D, T > qty )
 {
-    cout << D() 
+    cout << D()
          << " (" << size(D()) << ")" <<endl;
 }
 
 
-int main () 
+int main ()
 {
-
     quantity<_energy> e1 = 0.5_eV, e2 = 2.0_eV;
     quantity<_time>   t1 = 1.0_fs;
-
 
     auto c = e1 / e2 * t1;
     cout << get_dimension< decltype(c) >::type() << endl;

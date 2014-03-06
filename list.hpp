@@ -6,33 +6,24 @@
 #include <iostream>
 #include <typeinfo>
 
-
-// ---------------------------------------------------------------------------
 namespace lego {
-// ---------------------------------------------------------------------------
 
-// --- list class ------------------------------------------------------------
 // a type list class, the goal is that any typelist l<...> will work
 template<typename... Elements>
 struct list {};
-// --- end list class --------------------------------------------------------
 
-// --- size() ----------------------------------------------------------------
 // get the size of a list easily
 template< template <typename...> class List, typename... Elements>
 constexpr size_t size( List<Elements...> )
 {
     return sizeof...(Elements);
 }
-// --- end size() ------------------------------------------------------------
 
 // integer as a type. if you want to put ints in a typelist
 template <int I>
 struct _int {};
 
-
 // most important thing for debugging: print the list
-// --- printing functions ----------------------------------------------------
 // default base case for printing
 template<typename T>
 void print( std::ostream &os, T t )
@@ -59,7 +50,6 @@ void print( std::ostream &os, _int<I> i )
 template<typename T, typename... Ts>
 void print( std::ostream &os, T t, Ts... ts )
 {
-
     print(os,t);
     if (sizeof...(Ts) > 0 )
     {
@@ -105,7 +95,6 @@ struct append_range<List<Es...>,Max,Max>
 {
     using type = List<Es...,_int<Max>>;
 };
-// --- end append_range ------------------------------------------------------
 
 // append element n times
 // append_n< list<es...>, N, Element > = list<es...,Element,...,Element>
@@ -127,8 +116,6 @@ struct append_n<List<Es...>,0,Element>
 {
     using type = List<Es...>;
 };
-// --- end append_n ----------------------------------------------------------
-
 
 // --- element wise add, subtract, multiply, divide --------------------------
 // little helper typedef
@@ -144,61 +131,46 @@ using product_type = decltype(A() * B());
 template <typename A, typename B>
 using quotient_type = decltype(A() / B());
 
-// --- add_list_elements -----------------------------------------------------
+// Add
 template <typename List1, typename List2>
 struct add_list_elements {};
-
 template <template <typename...> class List,
           typename... Elements1, typename... Elements2>
 struct add_list_elements< List<Elements1...>,List<Elements2...> >
 {
     using type = List< sum_type<Elements1,Elements2>... >;
 };
-// --- end add_list_elements -------------------------------------------------
 
-// --- subtract_list_elements ------------------------------------------------
+// Subtract
 template <typename List1, typename List2>
 struct subtract_list_elements {};
-
 template <template <typename...> class List,
           typename... Elements1, typename... Elements2>
 struct subtract_list_elements< List<Elements1...>,List<Elements2...> >
 {
     using type = List< difference_type<Elements1,Elements2>... >;
 };
-// --- end subtract_list_elements --------------------------------------------
 
-
-// --- multiply_list_elements ------------------------------------------------
+// Multiply
 template <typename List1, typename List2>
 struct multiply_list_elements {};
-
 template <template <typename...> class List,
           typename... Elements1, typename... Elements2>
 struct multiply_list_elements< List<Elements1...>,List<Elements2...> >
 {
     using type = List< product_type<Elements1,Elements2>... >;
 };
-// --- end multiply_list_elements --------------------------------------------
 
-
-// --- divide_list_elements --------------------------------------------------
+// Divide
 template <typename List1, typename List2>
 struct divide_list_elements {};
-
 template <template <typename...> class List,
           typename... Elements1, typename... Elements2>
 struct divide_list_elements< List<Elements1...>,List<Elements2...> >
 {
     using type = List< quotient_type<Elements1,Elements2>... >;
 };
-// --- end divide_list_elements ----------------------------------------------
 
-
-
-// ---------------------------------------------------------------------------
-} // end namespace lego
-// ---------------------------------------------------------------------------
-
+}
 
 #endif // ifndef __META_LIST_HPP__

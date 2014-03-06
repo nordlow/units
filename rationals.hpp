@@ -14,7 +14,7 @@ namespace lego {
 // denominator needs to be positive or bad things might happen!
 // BUT, somehow static cast is not a constexpr (WTF!), so use ints and hope
 template <int N, int D>
-struct rational
+struct Rat
 {
     static constexpr int numerator()
     {
@@ -151,23 +151,19 @@ constexpr auto operator/( R1, R2 )
 
 // just a debug function for printing compile time rationals
 template <int N, int D>
-void print( std::ostream &os, rational<N,D> r )
+void print( std::ostream &os, Rat<N,D> r )
 {
     os << r;
 }
 
 template <int N, int D>
-std::ostream &operator<<( std::ostream &out, rational<N,D> )
+std::ostream &operator<<( std::ostream &out, Rat<N,D> )
 {
     out << N;
     if ( D > 1 ) { out << "/" << D; }
     return out;
 }
 
-// ---------------------------------------------------------------------------
-} // end namespace lego
-// ---------------------------------------------------------------------------
+}
 
-
-#endif // ifndef __RATIONALS_HPP__
-// eof rationals.hpp
+#endif

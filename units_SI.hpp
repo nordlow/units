@@ -67,7 +67,7 @@ UNITS_MAKE_DERIVED_DIMENSION(_gray,_Gy,_J/_kg); // Absorbed does (of ionizing ra
 UNITS_MAKE_DERIVED_DIMENSION(_sievert,_Sv,_J/_kg); // Absorbed does (of ionizing radiation)
 UNITS_MAKE_DERIVED_DIMENSION(_katal,_kat,_mol/_s); // Catalytic activity
 
-} // end namespace lego::units
-} // end namespace lego
+}
+}
 
-#endif // ifndef __UNITS_SI_HPP__
+#endif

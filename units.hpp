@@ -20,15 +20,15 @@ using make_base_dimension
     = typename append_n<
             typename append_n<
                 typename append_n<
-                    list<>, N-1, rational<0,1>
-                >::type, 1, rational<1,1>
-            >::type, BaseDims-N, rational<0,1>
+                    list<>, N-1, Rat<0,1>
+                >::type, 1, Rat<1,1>
+            >::type, BaseDims-N, Rat<0,1>
         >::type;
 
 
 template <int BaseDims>
 using make_scalar_dimension
-    = typename append_n< list<>, BaseDims, rational<0,1> >::type;
+    = typename append_n< list<>, BaseDims, Rat<0,1> >::type;
 
 
 // get dimension type from quantity
@@ -248,14 +248,14 @@ auto sqrt( quantity<D,T> x )
     -> quantity<
             typename multiply_list_elements<
                 D,
-                typename append_n< list<>, size( D() ), rational<1,2> >::type
+                typename append_n< list<>, size( D() ), Rat<1,2> >::type
             >::type,
             T
         >
 #endif
 {
     // list with same length as D and all entries 1/2
-    using halfs = typename append_n< list<>, size( D() ), rational<1,2> >::type;
+    using halfs = typename append_n< list<>, size( D() ), Rat<1,2> >::type;
     using return_dim = typename multiply_list_elements< D, halfs >::type;
     return quantity< return_dim, T >( std::sqrt(x.value()) );
 }
@@ -267,14 +267,14 @@ auto cbrt( quantity<D,T> x )
     -> quantity<
     typename multiply_list_elements<
     D,
-    typename append_n< list<>, size( D() ), rational<1,3> >::type
+    typename append_n< list<>, size( D() ), Rat<1,3> >::type
                                                             >::type,
     T
     >
 #endif
 {
     // list with same length as D and all entries 1/3
-    using halfs = typename append_n< list<>, size( D() ), rational<1,3> >::type;
+    using halfs = typename append_n< list<>, size( D() ), Rat<1,3> >::type;
     using return_dim = typename multiply_list_elements< D, halfs >::type;
     return quantity< return_dim, T >( std::cbrt(x.value()) );
 }
@@ -286,22 +286,19 @@ auto sqr( quantity<D,T> x )
     -> quantity<
         typename multiply_list_elements<
     D,
-    typename append_n< list<>, size( D() ), rational<2,1> >::type
+    typename append_n< list<>, size( D() ), Rat<2,1> >::type
                                                             >::type,
     T
     >
 #endif
 {
     // list with same length as D and all entries 1/2
-    using twice = typename append_n< list<>, size( D() ), rational<2,1> >::type;
+    using twice = typename append_n< list<>, size( D() ), Rat<2,1> >::type;
     using return_dim = typename multiply_list_elements< D, twice >::type;
     return quantity< return_dim, T >( x.value()*x.value() );
 }
 
-// ---------------------------------------------------------------------------
-    } // end namespace lego::units
-} // end namespace lego
-// ---------------------------------------------------------------------------
+    }
+}
 
-#define __UNITS_HPP__
-#endif // ifndef __UNITS_HPP__
+#endif

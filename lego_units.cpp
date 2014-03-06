@@ -44,6 +44,8 @@ int main()
     const auto solid_angle_ = 1.0_sr;
     const auto y = std::sin(angle_);
 
+    /* const auto xxx = area_ + len_; */
+
     std::cout << "F  = " << F << std::endl
               << "dx = " << dx << std::endl
               << "E  = " << E << std::endl

@@ -42,7 +42,11 @@ int main()
 
     const auto angle_ = 1.0_rad;
     const auto solid_angle_ = 1.0_sr;
-    const auto y = std::sin(angle_);
+
+    /* Trigonometry */
+    const auto sin_ = std::sin(angle_);
+    const auto cos_ = std::cos(angle_);
+    const auto tan_ = std::tan(angle_);
 
     /* const auto xxx = area_ + len_; */
 
@@ -53,6 +57,7 @@ int main()
 
     /// Test and check complex quantities.
     typedef std::complex<double> C; // double real and imaginary parts.
+
 
     // Define some complex electrical quantities.
     quantity<_electric_potential, C> v = C(12.5, 0.0) * _V;

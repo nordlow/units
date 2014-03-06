@@ -28,52 +28,68 @@ int main()
     quantity<energy> E = work(F,dx);    // and calculate the work done.
 
     const auto vel_ = 1.0_mps;
+    cout << vel_ << endl;
+
     const auto velx_ = 1.0_m / 1.0_s;
+    cout << velx_ << endl;
+
     const auto acc_ = 9.0_mps2;
+    cout << acc_ << endl;
 
     const auto area_ = 1.0_m2;
+    cout << area_ << endl;
+
     const auto len_ = sqrt(area_);
+    cout << len_ << endl;
+
     const auto area2_ = sqr(len_);
+    cout << area2_ << endl;
 
     const auto volume_ = 1.0_m3;
+    cout << volume_ << endl;
+
     const auto vlen_ = cbrt(volume_);
+    cout << vlen_ << endl;
 
     const auto pressure_ = 1.0_N;
-    const auto power_ = 1.0_W;
+    cout << pressure_ << endl;
 
-    printf("%s\n", name_string(power_).c_str());
+    const auto power_ = 1.0_W;
+    cout << power_ << endl;
 
     const auto angle_ = 1.0_rad;
+    cout << angle_ << endl;
+
     const auto solid_angle_ = 1.0_sr;
+    cout << solid_angle_ << endl;
 
     /* Trigonometry */
-    const auto sin_ = std::sin(angle_);
-    const auto cos_ = std::cos(angle_);
-    const auto tan_ = std::tan(angle_);
+    cout << std::sin(angle_) << endl;
+    cout << std::cos(angle_) << endl;
+    cout << std::tan(angle_) << endl;
 
     /* const auto xxx = area_ + len_; */
 
-    std::cout << "F  = " << F << std::endl
-              << "dx = " << dx << std::endl
-              << "E  = " << E << std::endl
-              << std::endl;
+    cout << "F  = " << F << endl
+         << "dx = " << dx << endl
+         << "E  = " << E << endl
+         << endl;
 
     /// Test and check complex quantities.
     typedef std::complex<double> C; // double real and imaginary parts.
 
-
     // Define some complex electrical quantities.
-    quantity<electric_potential, C> v = C(12.5, 0.0) * _V;
-    quantity<current, C>            i = C(3.0, 4.0) * _A;
-    quantity<resistance, C>         z = C(1.5, -2.0) * _Ohm;
+    auto v = C(12.5, 0.0) * _V;
+    auto i = C(3.0, 4.0) * _A;
+    auto z = C(1.5, -2.0) * _Ohm;
 
-    std::cout << "V   = " << v << std::endl
-              << "I   = " << i << std::endl
-              << "Z   = " << z << std::endl
-              // Calculate from Ohm's law voltage = current * resistance.
-              << "I * Z = " << i * z << std::endl
-              // Check defined V is equal to calculated.
-              << "I * Z == V: " << std::boolalpha << (i * z == v) << std::endl
-              << std::endl;
+    cout << "V   = " << v << endl
+         << "I   = " << i << endl
+         << "Z   = " << z << endl
+        // Calculate from Ohm's law voltage = current * resistance.
+         << "I * Z = " << i * z << endl
+        // Check defined V is equal to calculated.
+         << "I * Z == V: " << std::boolalpha << (i * z == v) << endl
+         << endl;
     return 0;
 }

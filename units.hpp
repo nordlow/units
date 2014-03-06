@@ -92,13 +92,6 @@ private:
 
 };
 
-template <typename D, typename T>
-std::ostream& operator<<( std::ostream& os, quantity<D,T> qty )
-{
-    os << qty.value() << " in " << D();
-    return os;
-}
-
 // now the operators on quantities
 // compare: only for same dimensions
 template <typename T1, typename T2, typename D>
@@ -278,7 +271,7 @@ auto sqr( quantity<D,T> x )
         typename multiply_list_elements<
     D,
     typename append_n< list<>, size( D() ), Rat<2,1> >::type
-                                                            >::type,
+    >::type,
     T
     >
 #endif
@@ -289,7 +282,20 @@ auto sqr( quantity<D,T> x )
     return quantity< return_dim, T >( x.value()*x.value() );
 }
 
-    }
+template<class D, class T> inline std::string name_string(const quantity<D, T>&) { return "Unknown"; }
+template<class D, class T> inline std::string unit_string(const quantity<D, T>&) { return "Unknown"; }
+template<class D, class T> inline std::string symbol_string(const quantity<D, T>&) { return "?"; }
+
+template <typename D, typename T>
+std::ostream& operator<<( std::ostream& os, quantity<D,T> qty )
+{
+    os << qty.value()
+       << " [" << unit_string(qty) << "]"
+       << " in " << D();
+    return os;
+}
+
+}
 }
 
 #endif

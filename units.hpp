@@ -6,6 +6,7 @@
 #include <cmath>
 #include "list.hpp"
 #include "rationals.hpp"
+#include "cc_features.h"
 
 // ---------------------------------------------------------------------------
 namespace lego { namespace units {
@@ -137,14 +138,18 @@ bool operator== ( quantity<D,T1> a, quantity<D,T2> b )
 
 template <typename T1, typename T2, typename D>
 auto operator+ ( quantity<D,T1> a, quantity<D,T2> b )
+#ifndef HAVE_CXX1Y_RETURN_TYPE_DEDUCTION
     -> quantity<D,decltype( a.value() + b.value() )>
+#endif
 {
     return quantity<D,decltype(a.value()+b.value())>(a.value() + b.value());
 }
 
 template <typename T1, typename T2, typename D>
 auto operator- ( quantity<D,T1> a, quantity<D,T2> b )
+#ifndef HAVE_CXX1Y_RETURN_TYPE_DEDUCTION
     -> quantity<D,decltype( a.value() - b.value() )>
+#endif
 {
     return quantity<D,decltype(a.value()-b.value())>(a.value() - b.value());
 }
@@ -152,8 +157,10 @@ auto operator- ( quantity<D,T1> a, quantity<D,T2> b )
 
 template <typename T1, typename T2, typename D1, typename D2>
 auto operator*( quantity<D1,T1> a, quantity<D2,T2> b )
+#ifndef HAVE_CXX1Y_RETURN_TYPE_DEDUCTION
     -> quantity< typename add_list_elements< D1, D2 >::type,
-                decltype(a.value()*b.value()) >
+                 decltype(a.value()*b.value()) >
+#endif
 {
     using return_type
         = quantity<
@@ -167,8 +174,10 @@ auto operator*( quantity<D1,T1> a, quantity<D2,T2> b )
 
 template <typename T1, typename T2, typename D1, typename D2>
 auto operator/( quantity<D1,T1> a, quantity<D2,T2> b )
+#ifndef HAVE_CXX1Y_RETURN_TYPE_DEDUCTION
     -> quantity< typename subtract_list_elements< D1, D2 >::type,
-                decltype(a.value()/b.value()) >
+                 decltype(a.value()/b.value()) >
+#endif
 {
     using return_type
         = quantity<
@@ -182,7 +191,9 @@ auto operator/( quantity<D1,T1> a, quantity<D2,T2> b )
 // scalars
 template <typename T1, typename T2, typename D>
 auto operator*( quantity<D,T1> a, T2 b )
+#ifndef HAVE_CXX1Y_RETURN_TYPE_DEDUCTION
     -> quantity< D, decltype(a.value()* b) >
+#endif
 {
     using return_type = quantity< D, decltype(a.value()* b) >;
 
@@ -191,7 +202,9 @@ auto operator*( quantity<D,T1> a, T2 b )
 
 template <typename T1, typename T2, typename D>
 auto operator*( T1 a, quantity<D,T2> b )
+#ifndef HAVE_CXX1Y_RETURN_TYPE_DEDUCTION
     -> quantity< D, decltype(a * b.value()) >
+#endif
 {
     using return_type = quantity< D, decltype(a * b.value()) >;
 
@@ -200,7 +213,9 @@ auto operator*( T1 a, quantity<D,T2> b )
 
 template <typename T1, typename T2, typename D>
 auto operator/( quantity<D,T1> a, T2 b )
+#ifndef HAVE_CXX1Y_RETURN_TYPE_DEDUCTION
     -> quantity< D, decltype(a.value()/ b) >
+#endif
 {
     using return_type = quantity< D, decltype(a.value()/ b) >;
 
@@ -209,7 +224,9 @@ auto operator/( quantity<D,T1> a, T2 b )
 
 template <typename T1, typename T2, typename D>
 auto operator/( T1 a, quantity<D,T2> b )
+#ifndef HAVE_CXX1Y_RETURN_TYPE_DEDUCTION
     -> quantity< D, decltype(a / b.value()) >
+#endif
 {
     using return_type = quantity< D, decltype(a / b.value()) >;
 
@@ -220,6 +237,7 @@ auto operator/( T1 a, quantity<D,T2> b )
 // square root function gives the unit a factor 1/2
 template <typename T, typename D>
 auto sqrt( quantity<D,T> x )
+#ifndef HAVE_CXX1Y_RETURN_TYPE_DEDUCTION
     -> quantity<
             typename multiply_list_elements<
                 D,
@@ -227,6 +245,7 @@ auto sqrt( quantity<D,T> x )
             >::type,
             T
         >
+#endif
 {
     // list with same length as D and all entries 1/2
     using halfs = typename append_n< list<>, size( D() ), rational<1,2> >::type;
@@ -237,6 +256,7 @@ auto sqrt( quantity<D,T> x )
 // cube root function gives the unit a factor 1/2
 template <typename T, typename D>
 auto cbrt( quantity<D,T> x )
+#ifndef HAVE_CXX1Y_RETURN_TYPE_DEDUCTION
     -> quantity<
     typename multiply_list_elements<
     D,
@@ -244,6 +264,7 @@ auto cbrt( quantity<D,T> x )
                                                             >::type,
     T
     >
+#endif
 {
     // list with same length as D and all entries 1/3
     using halfs = typename append_n< list<>, size( D() ), rational<1,3> >::type;
@@ -254,6 +275,7 @@ auto cbrt( quantity<D,T> x )
 // Square function gives the unit a factor
 template <typename T, typename D>
 auto sqr( quantity<D,T> x )
+#ifndef HAVE_CXX1Y_RETURN_TYPE_DEDUCTION
     -> quantity<
         typename multiply_list_elements<
     D,
@@ -261,7 +283,7 @@ auto sqr( quantity<D,T> x )
                                                             >::type,
     T
     >
-
+#endif
 {
     // list with same length as D and all entries 1/2
     using twice = typename append_n< list<>, size( D() ), rational<2,1> >::type;

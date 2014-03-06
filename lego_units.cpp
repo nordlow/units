@@ -1,3 +1,9 @@
+
+#ifdef __clang__
+typedef struct { double x, y; } __float128;
+extern "C" { extern char *gets(char *__s) { return 0; }; }
+#endif
+
 #include <iostream>
 #include <complex>
 #include <cmath>

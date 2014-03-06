@@ -81,10 +81,7 @@ template<> inline std::string symbol_string(const quantity<angle_rad>&){ return 
 #define M_RAD2DEG (57.2957795130823)
 
 // Degrees need special handling
-constexpr quantity<angle_rad> operator"" _deg( const long double value ) {
-    return quantity<angle_rad>(value*M_DEG2RAD);
-}
-const quantity<angle_rad> _deg(M_DEG2RAD);
+constexpr quantity<angle_rad> operator"" _deg(const long double value) { return quantity<angle_rad>(value*M_DEG2RAD); } const quantity<angle_rad> _deg(M_DEG2RAD);
 
 // TODO: Need special type and Delay reduction until use
 /** UNITS_MAKE_DERIVED_DIMENSION(solid_angle,_sr,_m2/_m2); */
@@ -273,6 +270,27 @@ UNITS_MAKE_DERIVED_DIMENSION(catality_activity,_kat,_mol/_s);
 inline std::string name_string(const quantity<catality_activity>&) { return "Illuminance"; }
 inline std::string unit_string(const quantity<catality_activity>&) { return "Lux"; }
 inline std::string symbol_string(const quantity<catality_activity>&){ return "lx"; }
+
+/** Non-SI units mentioned in the SI
+   https://en.wikipedia.org/wiki/Non-SI_units_accepted_for_use_with_SI
+*/
+constexpr quantity<time>   operator"" _minute(const long double value) { return quantity<time>  (value/60); }   const quantity<time> _minute(1.0/60);
+constexpr quantity<time>   operator"" _hour  (const long double value) { return quantity<time>  (value/3600); } const quantity<time> _hour(1.0/3600);
+constexpr quantity<time>   operator"" _day  (const long double value) { return quantity<time>  (value/(3600*24)); } const quantity<time> _day(1.0/(3600*24));
+
+/** See also: https://en.wikipedia.org/wiki/Litre */
+constexpr quantity<volume> operator"" _litre (const long double value) { return quantity<volume>(value*1e-3); }   const quantity<volume> _litre(1e-3);
+/** See also: https://en.wikipedia.org/wiki/Tonne */
+constexpr quantity<mass>   operator"" _tonne (const long double value) { return quantity<mass>  (value*1e+3); }   const quantity<volume> _tonne(1e+3);
+
+/* See also: https://en.wikipedia.org/wiki/Electronvolt */
+constexpr quantity<energy>   operator"" _eV  (const long double value) { return quantity<energy>  (value*1.60217656535e-19); } const quantity<energy> _eV(1.60217656535e-19);
+
+/* See also: https://en.wikipedia.org/wiki/Foot_(unit) */
+constexpr quantity<length>   operator"" _ft  (const long double value) { return quantity<length>  (value*0.3048); } const quantity<length> _ft(0.3048);
+
+/* See also: https://en.wikipedia.org/wiki/Yard */
+constexpr quantity<length>   operator"" _yd  (const long double value) { return quantity<length>  (value*0.9144); } const quantity<length> _yd(0.9144);
 
 }
 }

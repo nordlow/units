@@ -4,6 +4,7 @@
 #define __RATIONALS_HPP__
 
 #include <iostream>
+#include "cc_features.h"
 
 // ---------------------------------------------------------------------------
 namespace lego { namespace meta { namespace rationals {
@@ -114,28 +115,36 @@ struct divide_rationals< R<N1,D1>, R<N2,D2> >
 // --- operators +-*/ --------------------------------------------------------
 template <typename R1, typename R2>
 constexpr auto operator+( R1, R2 )
+#ifndef HAVE_CXX1Y_RETURN_TYPE_DEDUCTION
     ->  typename add_rationals< R1, R2 >::type
+#endif
 {
     return typename add_rationals< R1, R2 >::type();
 }
 
 template <typename R1, typename R2>
 constexpr auto operator-( R1, R2 )
+#ifndef HAVE_CXX1Y_RETURN_TYPE_DEDUCTION
     ->  typename subtract_rationals< R1, R2 >::type
+#endif
 {
     return typename subtract_rationals< R1, R2 >::type();
 }
 
 template <typename R1, typename R2>
 constexpr auto operator*( R1, R2 )
+#ifndef HAVE_CXX1Y_RETURN_TYPE_DEDUCTION
     ->  typename multiply_rationals< R1, R2 >::type
+#endif
 {
     return typename multiply_rationals< R1, R2 >::type();
 }
 
 template <typename R1, typename R2>
 constexpr auto operator/( R1, R2 )
+#ifndef HAVE_CXX1Y_RETURN_TYPE_DEDUCTION
     ->  typename divide_rationals< R1, R2 >::type
+#endif
 {
     return typename divide_rationals< R1, R2 >::type();
 }
@@ -152,7 +161,6 @@ std::ostream &operator<<( std::ostream &out, rational<N,D> )
 {
     out << N;
     if ( D > 1 ) { out << "/" << D; }
-
     return out;
 }
 

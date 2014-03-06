@@ -50,7 +50,7 @@ but I haven't tried any others yet.
 
     g++ -std=c++11 -I<path/to/units.hpp> <cpp-file>
 
-I've also added support in the Makefile for detection and C++1y return type deduction which are available in GCC-4.8.2 and Clang 3.3+.
+I've also added support in the Makefile for detection and use of C++1y Return Type Deduction of functions which are available in GCC-4.8.2 and Clang 3.3+.
 
     g++ -std=gnu++1y -I<path/to/units.hpp> <cpp-file>
 

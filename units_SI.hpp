@@ -113,11 +113,6 @@ UNITS_MAKE_DERIVED_DIMENSION(electric_potential,_V,_kg*(_m*_m)/(_s*_s*_s*_A));
 
 /* UNITS_MAKE_DERIVED_DIMENSION(voltage,_V,_W/_A); */
 
-UNITS_MAKE_DERIVED_DIMENSION(electric_resistance,_Ohm,_V/_A);
-template<> inline std::string name_string(const quantity<electric_resistance>&) { return "Electric Resistance"; }
-template<> inline std::string unit_string(const quantity<electric_resistance>&) { return "Ohm"; }
-template<> inline std::string symbol_string(const quantity<electric_resistance>&){ return "Ω"; }
-
 UNITS_MAKE_DERIVED_DIMENSION(pressure,_Pa,_N/_m2);
 template<> inline std::string name_string(const quantity<pressure>&) { return "Pressure"; }
 template<> inline std::string unit_string(const quantity<pressure>&) { return "Pascal"; }
@@ -133,30 +128,37 @@ inline std::string name_string(const quantity<frequency>&) { return "Frequency";
 inline std::string unit_string(const quantity<frequency>&) { return "Hertz"; }
 inline std::string symbol_string(const quantity<frequency>&){ return "Hz"; }
 
-UNITS_MAKE_DERIVED_DIMENSION(charge,_C,_s*_A); // Electric Charge: Coulomb
+UNITS_MAKE_DERIVED_DIMENSION(electric_resistance,_Ohm,_V/_A);
+template<> inline std::string name_string(const quantity<electric_resistance>&) { return "Electric Resistance"; }
+template<> inline std::string unit_string(const quantity<electric_resistance>&) { return "Ohm"; }
+template<> inline std::string symbol_string(const quantity<electric_resistance>&){ return "Ω"; }
+
+UNITS_MAKE_DERIVED_DIMENSION(charge,_C,_s*_A);
 template<> inline std::string name_string(const quantity<charge>&) { return "Electric Charge"; }
 template<> inline std::string unit_string(const quantity<charge>&) { return "Coulomb"; }
 template<> inline std::string symbol_string(const quantity<charge>&){ return "C"; }
 
-UNITS_MAKE_DERIVED_DIMENSION(capacitance,_F,_C/_V); // Electric Capacitance: Farad
-template<> inline std::string name_string(const quantity<capacitance>&) { return "Capacitance"; }
+UNITS_MAKE_DERIVED_DIMENSION(capacitance,_F,_C/_V);
+template<> inline std::string name_string(const quantity<capacitance>&) { return "Electric Capacitance"; }
 template<> inline std::string unit_string(const quantity<capacitance>&) { return "Farad"; }
 template<> inline std::string symbol_string(const quantity<capacitance>&){ return "F"; }
 
-UNITS_MAKE_DERIVED_DIMENSION(conductance,_S,_A/_V); // Siemens
-template<> inline std::string name_string(const quantity<conductance>&) { return "Conductance"; }
+UNITS_MAKE_DERIVED_DIMENSION(conductance,_S,_A/_V);
+template<> inline std::string name_string(const quantity<conductance>&) { return "Electric Conductance"; }
 template<> inline std::string unit_string(const quantity<conductance>&) { return "Siemens"; }
 template<> inline std::string symbol_string(const quantity<conductance>&){ return "S"; }
 
-UNITS_MAKE_DERIVED_DIMENSION(weber,_Wb,_V*_S); // Weber
-inline std::string name_string(const quantity<weber>&) { return "Weber"; }
-inline std::string unit_string(const quantity<weber>&) { return "Weber"; }
-inline std::string symbol_string(const quantity<weber>&){ return "Wb"; }
+/* See also: https://en.wikipedia.org/wiki/Weber_(unit) */
+UNITS_MAKE_DERIVED_DIMENSION(magnetic_flux,_Wb,_V*_S); // Weber
+inline std::string name_string(const quantity<magnetic_flux>&) { return "Weber"; }
+inline std::string unit_string(const quantity<magnetic_flux>&) { return "Weber"; }
+inline std::string symbol_string(const quantity<magnetic_flux>&){ return "Wb"; }
 
-UNITS_MAKE_DERIVED_DIMENSION(magnetic_flux,_T,_Wb/_m2); // Magnetic Flux: Magnetic_Flux
-inline std::string name_string(const quantity<magnetic_flux>&) { return "Magnetic Flux"; }
-inline std::string unit_string(const quantity<magnetic_flux>&) { return "Magnetic_Flux"; }
-inline std::string symbol_string(const quantity<magnetic_flux>&){ return "T"; }
+/* See also: https://en.wikipedia.org/wiki/Tesla_(unit) */
+UNITS_MAKE_DERIVED_DIMENSION(magnetic_flux_density,_T,_Wb/_m2);
+inline std::string name_string(const quantity<magnetic_flux_density>&) { return "Magnetic Flux"; }
+inline std::string unit_string(const quantity<magnetic_flux_density>&) { return "Tesla"; }
+inline std::string symbol_string(const quantity<magnetic_flux_density>&){ return "T"; }
 
 /* See also: https://en.wikipedia.org/wiki/Henry_(unit) */
 UNITS_MAKE_DERIVED_DIMENSION(inductance,_H,_Ohm/_s); // Henry

@@ -151,13 +151,13 @@ constexpr auto operator/( R1, R2 )
 
 // just a debug function for printing compile time rationals
 template <int N, int D>
-void print( std::ostream &os, Rat<N,D> r )
+void print( std::ostream& os, Rat<N,D> r )
 {
     os << r;
 }
 
 template <int N, int D>
-std::ostream &operator<<( std::ostream &out, Rat<N,D> )
+std::ostream& operator<<( std::ostream& out, Rat<N,D> )
 {
     out << N;
     if ( D > 1 ) { out << "/" << D; }

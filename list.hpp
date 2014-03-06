@@ -26,7 +26,7 @@ struct _int {};
 // most important thing for debugging: print the list
 // default base case for printing
 template<typename T>
-void print( std::ostream &os, T t )
+void print( std::ostream& os, T t )
 {
     os << "("<< typeid(T).name() << ")";
 }
@@ -34,21 +34,21 @@ void print( std::ostream &os, T t )
 // special cases
 // _int class
 template <int I>
-std::ostream &operator<<( std::ostream &os, _int<I> )
+std::ostream& operator<<( std::ostream& os, _int<I> )
 {
     os << "_int<" << I << ">";
     return os;
 }
 
 template <int I>
-void print( std::ostream &os, _int<I> i )
+void print( std::ostream& os, _int<I> i )
 {
     os << i;
 }
 
 // list arguments, recurse
 template<typename T, typename... Ts>
-void print( std::ostream &os, T t, Ts... ts )
+void print( std::ostream& os, T t, Ts... ts )
 {
     print(os,t);
     if (sizeof...(Ts) > 0 )
@@ -59,13 +59,13 @@ void print( std::ostream &os, T t, Ts... ts )
 }
 
 template < template <typename...> class List, typename... Elements >
-void print( std::ostream &os, List<Elements...> l )
+void print( std::ostream& os, List<Elements...> l )
 {
     os << l;
 }
 
 template < template <typename...> class List, typename... Elements >
-std::ostream &operator<<( std::ostream &os, List<Elements...> )
+std::ostream& operator<<( std::ostream& os, List<Elements...> )
 {
     os << "<";
     print( os, Elements()... );

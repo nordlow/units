@@ -43,10 +43,16 @@ library. There are no automated tests yet. Only very few manual tests have been
 performed to show that the most common and most easy and trivial things appear
 to work. 
 
-It compiles using gcc 4.7.2. Probably other C++11 compilers will work as well,
+It compiles using GCC 4.7.2.
+
+Probably other C++11 compilers will work as well,
 but I haven't tried any others yet. 
 
     g++ -std=c++11 -I<path/to/units.hpp> <cpp-file>
+
+I've also added support in the Makefile for detection and C++1y return type deduction which are available in GCC-4.8.2 and Clang 3.3+.
+
+    g++ -std=gnu++1y -I<path/to/units.hpp> <cpp-file>
 
 
 Description of the library's files

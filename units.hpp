@@ -92,19 +92,10 @@ private:
 
 };
 
-// print the quantity = print the value
-template <typename D, typename T>
-std::ostream& print_unit( std::ostream& os, quantity<D,T> qty )
-{
-    return os;
-}
-
-// print the quantity = print the value
 template <typename D, typename T>
 std::ostream& operator<<( std::ostream& os, quantity<D,T> qty )
 {
-    os << qty.value();
-    print_unit(os, qty);
+    os << qty.value() << " in " << D();
     return os;
 }
 

@@ -1,7 +1,6 @@
 
 #include <iostream>
 #include <cmath>
-// #include "rationals.hpp"
 #include "units_eV-K-nm-fs-e0.hpp"
 
 using namespace std;
@@ -18,7 +17,6 @@ void print_type( quantity< D, T > qty )
          << size(D())
          << ")" <<endl;
 }
-
 
 int main ()
 {

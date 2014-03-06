@@ -8,9 +8,7 @@
 #include "rationals.hpp"
 #include "cc_features.h"
 
-// ---------------------------------------------------------------------------
 namespace lego { namespace units {
-// ---------------------------------------------------------------------------
 
 using namespace lego;
 
@@ -222,7 +220,7 @@ auto operator/( T1 a, quantity<D,T2> b )
 }
 
 
-// square root function gives the unit a factor 1/2
+/** Square root function gives the unit a factor 1/2. */
 template <typename T, typename D>
 auto sqrt( quantity<D,T> x )
 #ifndef HAVE_CXX1Y_RETURN_TYPE_DEDUCTION
@@ -241,7 +239,7 @@ auto sqrt( quantity<D,T> x )
     return quantity< return_dim, T >( std::sqrt(x.value()) );
 }
 
-// cube root function gives the unit a factor 1/2
+/** Cube root function gives the unit a factor 1/3. */
 template <typename T, typename D>
 auto cbrt( quantity<D,T> x )
 #ifndef HAVE_CXX1Y_RETURN_TYPE_DEDUCTION
@@ -260,7 +258,7 @@ auto cbrt( quantity<D,T> x )
     return quantity< return_dim, T >( std::cbrt(x.value()) );
 }
 
-// Square function gives the unit a factor
+/** Square function gives the unit a factor. */
 template <typename T, typename D>
 auto sqr( quantity<D,T> x )
 #ifndef HAVE_CXX1Y_RETURN_TYPE_DEDUCTION
@@ -288,7 +286,8 @@ std::ostream& operator<<( std::ostream& os, quantity<D,T> qty )
 {
     os << qty.value()
        << " [" << unit_string(qty) << "]"
-       << " in " << D();
+       << " of " << name_string(qty)
+       << " " << D();
     return os;
 }
 

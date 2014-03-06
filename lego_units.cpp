@@ -66,6 +66,8 @@ int main()
     assert(angle_deg_ == 360.0*_deg);
     cout << angle_deg_ << endl;
 
+    assert(1.0_Wb == 1.0e8_Mx);
+
     /* TODO: Activate */
     /* const auto solid_angle_ = 1.0_sr; */
     /* cout << solid_angle_ << endl; */

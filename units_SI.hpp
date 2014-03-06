@@ -5,19 +5,21 @@
 
 #include "units.hpp"
 
-/* See also https://en.wikipedia.org/wiki/International_System_of_Units
+/** See also https://en.wikipedia.org/wiki/International_System_of_Units
  */
 namespace lego {
 
 namespace units {
 
-// define a base system
+/** SI Base Units
+ */
 #define UNITS_BASE_DIMENSIONS 7
 
 UNITS_MAKE_BASE_DIMENSION(length,_m,1);
 template<> inline std::string name_string(const quantity<length>&) { return "Length"; }
-template<> inline std::string unit_string(const quantity<length>&) { return "meter"; }
+template<> inline std::string unit_string(const quantity<length>&) { return "metre"; }
 template<> inline std::string symbol_string(const quantity<length>&){ return "m"; }
+
 UNITS_MAKE_BASE_DIMENSION(mass,_kg,2);
 template<> inline std::string name_string(const quantity<mass>&) { return "Mass"; }
 template<> inline std::string unit_string(const quantity<mass>&) { return "kilogram"; }
@@ -32,10 +34,12 @@ UNITS_MAKE_BASE_DIMENSION(current,_A,4);
 template<> inline std::string name_string(const quantity<current>&) { return "Current"; }
 template<> inline std::string unit_string(const quantity<current>&) { return "Ampere"; }
 template<> inline std::string symbol_string(const quantity<current>&){ return "A"; }
+
 UNITS_MAKE_BASE_DIMENSION(temperature,_K,5);
 template<> inline std::string name_string(const quantity<temperature>&) { return "Temperature"; }
 template<> inline std::string unit_string(const quantity<temperature>&) { return "Kelvin"; }
 template<> inline std::string symbol_string(const quantity<temperature>&){ return "K"; }
+
 UNITS_MAKE_BASE_DIMENSION(amount_of_substance,_mol,6);
 template<> inline std::string name_string(const quantity<amount_of_substance>&) { return "Amount of Substance"; }
 template<> inline std::string unit_string(const quantity<amount_of_substance>&) { return "Molar"; }
@@ -51,16 +55,18 @@ inline std::string name_string(const quantity<scalar>&) { return "Scalar"; }
 inline std::string unit_string(const quantity<scalar>&) { return "Dimensionless"; }
 inline std::string symbol_string(const quantity<scalar>&){ return "N/A"; }
 
-/* See also: https://en.wikipedia.org/wiki/International_System_of_Units#Derived_units
+/** Derived SI Units
+    See also: https://en.wikipedia.org/wiki/International_System_of_Units#Derived_units
+    See also: https://en.wikipedia.org/wiki/SI_derived_unit
  */
 
 UNITS_MAKE_DERIVED_DIMENSION(area,_m2,_m*_m);
 template<> inline std::string name_string(const quantity<area>&) { return "Area"; }
-template<> inline std::string unit_string(const quantity<area>&) { return "squaremeter"; }
+template<> inline std::string unit_string(const quantity<area>&) { return "square metre"; }
 template<> inline std::string symbol_string(const quantity<area>&){ return "m^2"; }
 UNITS_MAKE_DERIVED_DIMENSION(volume,_m3,_m*_m*_m);
 template<> inline std::string name_string(const quantity<volume>&) { return "Volume"; }
-template<> inline std::string unit_string(const quantity<volume>&) { return "cubicmeter"; }
+template<> inline std::string unit_string(const quantity<volume>&) { return "cubic metre"; }
 template<> inline std::string symbol_string(const quantity<volume>&){ return "m^3"; }
 
 UNITS_MAKE_DERIVED_DIMENSION(angle_rad,_rad,_m/_m);
@@ -81,37 +87,89 @@ constexpr quantity<angle_rad> operator"" _deg( const long double value ) {
 const quantity<angle_rad> _deg(M_DEG2RAD);
 
 // TODO: Need special type and Delay reduction until use
-/* UNITS_MAKE_DERIVED_DIMENSION(solid_angle,_sr,_m2/_m2); */
-/* template<> inline std::string name_string(const quantity<solid_angle>&) { return "Solid Angle"; } */
-/* template<> inline std::string unit_string(const quantity<solid_angle>&) { return "Sterdian"; } */
-/* template<> inline std::string symbol_string(const quantity<solid_angle>&){ return "st"; } */
+/** UNITS_MAKE_DERIVED_DIMENSION(solid_angle,_sr,_m2/_m2); */
+/** emplate<> inline std::string name_string(const quantity<solid_angle>&) { return "Solid Angle"; } */
+/** emplate<> inline std::string unit_string(const quantity<solid_angle>&) { return "Sterdian"; } */
+/** emplate<> inline std::string symbol_string(const quantity<solid_angle>&){ return "st"; } */
 
-UNITS_MAKE_DERIVED_DIMENSION(density,_dens,_kg/_m3);
-template<> inline std::string name_string(const quantity<density>&) { return "Density"; }
-template<> inline std::string unit_string(const quantity<density>&) { return "kg/m3"; }
-template<> inline std::string symbol_string(const quantity<density>&){ return "kg/m3"; }
+UNITS_MAKE_DERIVED_DIMENSION(area_density,_areadens,_kg/_m2);
+template<> inline std::string name_string(const quantity<area_density>&) { return "Area Density"; }
+template<> inline std::string unit_string(const quantity<area_density>&) { return "kg/m2"; }
+template<> inline std::string symbol_string(const quantity<area_density>&){ return "kg/m2"; }
+
+UNITS_MAKE_DERIVED_DIMENSION(volume_density,_dens,_kg/_m3);
+template<> inline std::string name_string(const quantity<volume_density>&) { return "Volume/Mass Density"; }
+template<> inline std::string unit_string(const quantity<volume_density>&) { return "kg/m3"; }
+template<> inline std::string symbol_string(const quantity<volume_density>&){ return "kg/m3"; }
+
+UNITS_MAKE_DERIVED_DIMENSION(specific_volume,_specvol,_m3/_kg);
+template<> inline std::string name_string(const quantity<specific_volume>&) { return "Specific Volume"; }
+template<> inline std::string unit_string(const quantity<specific_volume>&) { return "m3/kg"; }
+template<> inline std::string symbol_string(const quantity<specific_volume>&){ return "m3/kg"; }
 
 UNITS_MAKE_DERIVED_DIMENSION(velocity,_mps,_m/_s);
 template<> inline std::string name_string(const quantity<velocity>&) { return "Velocity"; }
-template<> inline std::string unit_string(const quantity<velocity>&) { return "meters per second"; }
+template<> inline std::string unit_string(const quantity<velocity>&) { return "metres per second"; }
 template<> inline std::string symbol_string(const quantity<velocity>&){ return "m/s"; }
+
 UNITS_MAKE_DERIVED_DIMENSION(acceleration,_mps2,_m/(_s*_s));
 template<> inline std::string name_string(const quantity<acceleration>&) { return "Acceleration"; }
-template<> inline std::string unit_string(const quantity<acceleration>&) { return "meters per second squared"; }
+template<> inline std::string unit_string(const quantity<acceleration>&) { return "metres per second squared"; }
 template<> inline std::string symbol_string(const quantity<acceleration>&){ return "m/s^2"; }
+
+UNITS_MAKE_DERIVED_DIMENSION(jerk,_mps3,_m/(_s*_s*_s));
+template<> inline std::string name_string(const quantity<jerk>&) { return "Jerk/Jolt/Surge"; }
+template<> inline std::string unit_string(const quantity<jerk>&) { return "metres per second cubed"; }
+template<> inline std::string symbol_string(const quantity<jerk>&){ return "m/s^3"; }
+
+UNITS_MAKE_DERIVED_DIMENSION(snap,_mps4,_m/(_s*_s*_s*_s));
+template<> inline std::string name_string(const quantity<snap>&) { return "Snap/Jounce"; }
+template<> inline std::string unit_string(const quantity<snap>&) { return "m/s^4"; }
+template<> inline std::string symbol_string(const quantity<snap>&){ return "m/s^4"; }
+
 UNITS_MAKE_DERIVED_DIMENSION(force,_N,_kg*_mps2);
 template<> inline std::string name_string(const quantity<force>&) { return "Force"; }
 template<> inline std::string unit_string(const quantity<force>&) { return "Newton"; }
 template<> inline std::string symbol_string(const quantity<force>&){ return "N"; }
+
+/** See also: https://en.wikipedia.org/wiki/Momentum */
+UNITS_MAKE_DERIVED_DIMENSION(momentum,_Ns,_N*_s);
+template<> inline std::string name_string(const quantity<momentum>&) { return "Momentum/Impulse"; }
+template<> inline std::string unit_string(const quantity<momentum>&) { return "Newton second"; }
+template<> inline std::string symbol_string(const quantity<momentum>&){ return "Ns"; }
+
+/** See also: https://en.wikipedia.org/wiki/Angular_momentum */
+UNITS_MAKE_DERIVED_DIMENSION(angular_momentum,_Nms,_N*_m*_s);
+template<> inline std::string name_string(const quantity<angular_momentum>&) { return "Angular Momentum"; }
+template<> inline std::string unit_string(const quantity<angular_momentum>&) { return "Newton metre second"; }
+template<> inline std::string symbol_string(const quantity<angular_momentum>&){ return "Nms"; }
+
+/** See also: https://en.wikipedia.org/wiki/Torque */
+UNITS_MAKE_DERIVED_DIMENSION(torque,_Nm,_N*_m);
+/* TODO: We need new something new in order for this not to collied with angular_momentum. */
+/* template<> inline std::string name_string(const quantity<torque>&) { return "Torque"; } */
+/* template<> inline std::string unit_string(const quantity<torque>&) { return "Newton metre"; } */
+/* template<> inline std::string symbol_string(const quantity<torque>&){ return "Nm"; } */
+
 UNITS_MAKE_DERIVED_DIMENSION(energy,_J,_N*_m);
 template<> inline std::string name_string(const quantity<energy>&) { return "Energy"; }
 template<> inline std::string unit_string(const quantity<energy>&) { return "Joule"; }
 template<> inline std::string symbol_string(const quantity<energy>&){ return "J"; }
 
-/* Electric Potential in Volt */
+UNITS_MAKE_DERIVED_DIMENSION(action,_Js,_J*_s);
+/* template<> inline std::string name_string(const quantity<action>&) { return "Action"; } */
+/* template<> inline std::string unit_string(const quantity<action>&) { return "Joule second"; } */
+/* template<> inline std::string symbol_string(const quantity<action>&){ return "J*s"; } */
+
+UNITS_MAKE_DERIVED_DIMENSION(yank,_Nps,_N/_s);
+template<> inline std::string name_string(const quantity<yank>&) { return "Jank"; }
+template<> inline std::string unit_string(const quantity<yank>&) { return "Newton per second"; }
+template<> inline std::string symbol_string(const quantity<yank>&){ return "N/s"; }
+
+/** Electric Potential in Volt */
 UNITS_MAKE_DERIVED_DIMENSION(electric_potential,_V,_kg*(_m*_m)/(_s*_s*_s*_A));
 
-/* UNITS_MAKE_DERIVED_DIMENSION(voltage,_V,_W/_A); */
+/** UNITS_MAKE_DERIVED_DIMENSION(voltage,_V,_W/_A); */
 
 UNITS_MAKE_DERIVED_DIMENSION(pressure,_Pa,_N/_m2);
 template<> inline std::string name_string(const quantity<pressure>&) { return "Pressure"; }
@@ -122,6 +180,11 @@ UNITS_MAKE_DERIVED_DIMENSION(power,_W,_J/_s);
 template<> inline std::string name_string(const quantity<power>&) { return "Power"; }
 template<> inline std::string unit_string(const quantity<power>&) { return "Watt"; }
 template<> inline std::string symbol_string(const quantity<power>&){ return "W"; }
+
+UNITS_MAKE_DERIVED_DIMENSION(wavenumber,_wavenumber,1/_m);
+inline std::string name_string(const quantity<wavenumber>&) { return "Wavenumber"; }
+inline std::string unit_string(const quantity<wavenumber>&) { return "reciprocal metre"; }
+inline std::string symbol_string(const quantity<wavenumber>&){ return "1/m"; }
 
 UNITS_MAKE_DERIVED_DIMENSION(frequency,_Hz,1/_s);
 inline std::string name_string(const quantity<frequency>&) { return "Frequency"; }
@@ -148,19 +211,25 @@ template<> inline std::string name_string(const quantity<conductance>&) { return
 template<> inline std::string unit_string(const quantity<conductance>&) { return "Siemens"; }
 template<> inline std::string symbol_string(const quantity<conductance>&){ return "S"; }
 
-/* See also: https://en.wikipedia.org/wiki/Weber_(unit) */
+/** See also: https://en.wikipedia.org/wiki/Weber_(unit) */
 UNITS_MAKE_DERIVED_DIMENSION(magnetic_flux,_Wb,_V*_S); // Weber
 inline std::string name_string(const quantity<magnetic_flux>&) { return "Weber"; }
 inline std::string unit_string(const quantity<magnetic_flux>&) { return "Weber"; }
 inline std::string symbol_string(const quantity<magnetic_flux>&){ return "Wb"; }
 
-/* See also: https://en.wikipedia.org/wiki/Tesla_(unit) */
+/** See also: https://en.wikipedia.org/wiki/Maxwell_(unit) */
+constexpr quantity<magnetic_flux> operator"" _Mx( const long double value ) {
+    return quantity<magnetic_flux>(1e-8*value);
+}
+const quantity<magnetic_flux> _Mx(1e-8);
+
+/** See also: https://en.wikipedia.org/wiki/Tesla_(unit) */
 UNITS_MAKE_DERIVED_DIMENSION(magnetic_flux_density,_T,_Wb/_m2);
 inline std::string name_string(const quantity<magnetic_flux_density>&) { return "Magnetic Flux"; }
 inline std::string unit_string(const quantity<magnetic_flux_density>&) { return "Tesla"; }
 inline std::string symbol_string(const quantity<magnetic_flux_density>&){ return "T"; }
 
-/* See also: https://en.wikipedia.org/wiki/Henry_(unit) */
+/** See also: https://en.wikipedia.org/wiki/Henry_(unit) */
 UNITS_MAKE_DERIVED_DIMENSION(inductance,_H,_Ohm/_s); // Henry
 inline std::string name_string(const quantity<inductance>&) { return "Inductance"; }
 inline std::string unit_string(const quantity<inductance>&) { return "Henry"; }
@@ -171,23 +240,23 @@ inline std::string name_string(const quantity<temperature_Celsius>&) { return "T
 inline std::string unit_string(const quantity<temperature_Celsius>&) { return "Celsius"; }
 inline std::string symbol_string(const quantity<temperature_Celsius>&){ return "C"; }
 
-/* TODO: Activate when _sr type is is fixed. */
-/* UNITS_MAKE_DERIVED_DIMENSION(lumen,_lm,_cd*_sr); */
-/* inline std::string name_string(const quantity<lumen>&) { return "Lumen"; } */
-/* inline std::string unit_string(const quantity<lumen>&) { return "Lumen"; } */
-/* inline std::string symbol_string(const quantity<lumen>&){ return "T"; } */
+/** ODO: Activate when _sr type is is fixed. */
+/** UNITS_MAKE_DERIVED_DIMENSION(lumen,_lm,_cd*_sr); */
+/** inline std::string name_string(const quantity<lumen>&) { return "Lumen"; } */
+/** inline std::string unit_string(const quantity<lumen>&) { return "Lumen"; } */
+/** inline std::string symbol_string(const quantity<lumen>&){ return "T"; } */
 
-/* TODO: Activate when _lm type is is fixed. */
-/* UNITS_MAKE_DERIVED_DIMENSION(illuminance,_lx,_lm/_m2); */
-/* inline std::string name_string(const quantity<illuminance>&) { return "Illuminance"; } */
-/* inline std::string unit_string(const quantity<illuminance>&) { return "Lux"; } */
-/* inline std::string symbol_string(const quantity<illuminance>&){ return "lx"; } */
+/** ODO: Activate when _lm type is is fixed. */
+/** UNITS_MAKE_DERIVED_DIMENSION(illuminance,_lx,_lm/_m2); */
+/** inline std::string name_string(const quantity<illuminance>&) { return "Illuminance"; } */
+/** inline std::string unit_string(const quantity<illuminance>&) { return "Lux"; } */
+/** inline std::string symbol_string(const quantity<illuminance>&){ return "lx"; } */
 
 UNITS_MAKE_DERIVED_DIMENSION(becquerel,_Bq,1/_s);
 // TODO: This collides with Herz. Need explicit extra class for this
-/* inline std::string name_string(const quantity<becquerel>&) { return "Decays per second"; } */
-/* inline std::string unit_string(const quantity<becquerel>&) { return "Becquerel"; } */
-/* inline std::string symbol_string(const quantity<becquerel>&){ return "Bq"; } */
+/** inline std::string name_string(const quantity<becquerel>&) { return "Decays per second"; } */
+/** inline std::string unit_string(const quantity<becquerel>&) { return "Becquerel"; } */
+/** inline std::string symbol_string(const quantity<becquerel>&){ return "Bq"; } */
 
 UNITS_MAKE_DERIVED_DIMENSION(absorbed_dose,_Gy,_J/_kg);
 inline std::string name_string(const quantity<absorbed_dose>&) { return "Absorbed Dose (of ionizing radiation)"; }
@@ -196,9 +265,9 @@ inline std::string symbol_string(const quantity<absorbed_dose>&){ return "Gy"; }
 
 UNITS_MAKE_DERIVED_DIMENSION(sievert,_Sv,_J/_kg); // Absorbed does (of ionizing radiation)
 // TODO: This collides with Gray. Need explicit extra class for this
-/* inline std::string name_string(const quantity<absorbed_dose>&) { return "Absorbed Dose (of ionizing radiation)"; } */
-/* inline std::string unit_string(const quantity<absorbed_dose>&) { return "Sievert"; } */
-/* inline std::string symbol_string(const quantity<absorbed_dose>&){ return "Sv"; } */
+/** inline std::string name_string(const quantity<absorbed_dose>&) { return "Absorbed Dose (of ionizing radiation)"; } */
+/** inline std::string unit_string(const quantity<absorbed_dose>&) { return "Sievert"; } */
+/** inline std::string symbol_string(const quantity<absorbed_dose>&){ return "Sv"; } */
 
 UNITS_MAKE_DERIVED_DIMENSION(catality_activity,_kat,_mol/_s);
 inline std::string name_string(const quantity<catality_activity>&) { return "Illuminance"; }
